@@ -353,6 +353,54 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
         </div>
       </article>
 
+      <!-- PRJ-003 -->
+      <article class="panel">
+        <span class="tb tl"></span><span class="tb tr"></span><span class="tb bl"></span><span class="tb br"></span>
+        <span class="lockline">TARGET LOCKED</span>
+        <a class="thumb" href="https://kaninnat-phu.github.io/Smart-Server-Room-Monitoring---Network-Infrastructure/" target="_blank" rel="noopener" aria-label="Open Dual-Link OSPF Failover Lab live demo">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#050505"/>
+            <text x="14" y="26" fill="#8C8C88" font-family="monospace" font-size="9">OSPF AREA 0 — DUAL CORE LINK</text>
+            <rect x="34" y="74" width="46" height="34" fill="none" stroke="#F2F2F0"/>
+            <text x="48" y="95" fill="#F2F2F0" font-family="monospace" font-size="11">R1</text>
+            <rect x="240" y="74" width="46" height="34" fill="none" stroke="#F2F2F0"/>
+            <text x="254" y="95" fill="#F2F2F0" font-family="monospace" font-size="11">R2</text>
+            <path id="lkA" d="M80 84 L160 56 L240 84" fill="none" stroke="#2E2E2C" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <text x="132" y="48" fill="#8C8C88" font-family="monospace" font-size="8">g0/1 · DOWN</text>
+            <line x1="150" y1="50" x2="170" y2="66" stroke="#8C8C88" stroke-width="1.5"/>
+            <line x1="170" y1="50" x2="150" y2="66" stroke="#8C8C88" stroke-width="1.5"/>
+            <path id="lkB" d="M80 98 L160 126 L240 98" fill="none" stroke="#F2F2F0" stroke-width="2"/>
+            <text x="126" y="142" fill="#F2F2F0" font-family="monospace" font-size="8">g0/2 · ACTIVE</text>
+            <circle r="3.5" fill="#F2F2F0">
+              <animateMotion dur="1.9s" repeatCount="indefinite"><mpath href="#lkB"/></animateMotion>
+            </circle>
+            <circle r="2.5" fill="#F2F2F0" opacity=".6">
+              <animateMotion dur="1.9s" begin="0.65s" repeatCount="indefinite"><mpath href="#lkB"/></animateMotion>
+            </circle>
+            <circle r="2.5" fill="#F2F2F0" opacity=".6">
+              <animateMotion dur="1.9s" begin="1.3s" repeatCount="indefinite"><mpath href="#lkB"/></animateMotion>
+            </circle>
+            <circle cx="264" cy="60" r="3" fill="#F2F2F0" class="pulse"/>
+            <text x="196" y="164" fill="#8C8C88" font-family="monospace" font-size="9">0% LOSS · RECONVERGED</text>
+          </svg>
+          <span class="go">OPEN LIVE ↗</span>
+        </a>
+        <div class="cbody">
+          <div class="pid"><span>PRJ-003 · NETWORK</span><span class="live">LIVE</span></div>
+          <h3>Dual-Link OSPF Failover Lab</h3>
+          <p>Redundant server-room core in Cisco Packet Tracer — two /30 links running OSPF area 0, an extended ACL filtering ICMP while HTTP stays reachable, then the primary link cut mid-traffic to prove reconvergence.</p>
+          <div class="stats">
+            <div class="stat"><div class="num" data-count="0" data-suffix="%">0%</div><div class="lab">packet loss</div></div>
+            <div class="stat"><div class="num" data-count="2">0</div><div class="lab">equal-cost paths</div></div>
+            <div class="stat"><div class="num" data-count="1">0</div><div class="lab">extended acl</div></div>
+          </div>
+          <div class="plinks">
+            <a href="https://kaninnat-phu.github.io/Smart-Server-Room-Monitoring---Network-Infrastructure/" target="_blank" rel="noopener">Live demo</a>
+            <a href="https://github.com/Kaninnat-phu/Smart-Server-Room-Monitoring---Network-Infrastructure" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+
       <!-- future slot -->
       <article class="panel slot">
         <span>+ next project<br><i style="font-style:normal;font-size:10px;opacity:.7">thumbnail · live demo · github</i></span>
