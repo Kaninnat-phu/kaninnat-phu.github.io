@@ -143,6 +143,10 @@ h2{font-weight:500;font-size:clamp(30px,4vw,52px);letter-spacing:-.01em;margin-b
 .panel.slot span{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;text-align:center;line-height:2.2}
 .railhint{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;display:flex;gap:10px;align-items:center;margin-top:6px}
 .railhint::after{content:"→";animation:nudge 1.6s ease-in-out infinite}
+.railnav{display:flex;align-items:center;gap:10px;margin-top:6px}
+.rbtn{width:38px;height:38px;background:rgba(0,0,0,.4);border:1px solid var(--line);color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:15px;cursor:pointer;transition:.25s}
+.rbtn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.railnav .railhint{margin-top:0}
 @keyframes nudge{50%{transform:translateX(8px)}}
 
 /* thumb svg anims */
@@ -406,7 +410,11 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
       </article>
 
     </div>
-    <div class="railhint">swipe / scroll</div>
+   <div class="railnav">
+      <button class="rbtn" data-rail="prev" aria-label="Previous project">←</button>
+      <button class="rbtn" data-rail="next" aria-label="Next project">→</button>
+      <span class="railhint">swipe / scroll</span>
+    </div>
   </div>
 </section>
 
@@ -561,6 +569,23 @@ function checkLock(){
   });
 }
 rail.addEventListener('scroll',checkLock,{passive:true});
+
+/* mouse wheel → horizontal (Windows / non-trackpad) */
+rail.addEventListener('wheel',e=>{
+  if(Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;
+  const atStart=rail.scrollLeft<=0, atEnd=rail.scrollLeft>=rail.scrollWidth-rail.clientWidth-1;
+  if((e.deltaY<0&&atStart)||(e.deltaY>0&&atEnd))return;
+  e.preventDefault();
+  rail.scrollBy({left:e.deltaY*1.1,behavior:'auto'});
+},{passive:false});
+
+/* arrow buttons */
+document.querySelectorAll('[data-rail]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const step=rail.querySelector('.panel').offsetWidth+22;
+    rail.scrollBy({left:b.dataset.rail==='next'?step:-step,behavior:'smooth'});
+  });
+});
 addEventListener('scroll',checkLock,{passive:true});
 setTimeout(checkLock,600);
 
