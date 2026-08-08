@@ -404,10 +404,6 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
         </div>
       </article>
 
-      <!-- future slot -->
-      <article class="panel slot">
-        <span>+ next project<br><i style="font-style:normal;font-size:10px;opacity:.7">thumbnail · live demo · github</i></span>
-      </article>
 
     </div>
    <div class="railnav">
@@ -582,10 +578,58 @@ rail.addEventListener('wheel',e=>{
 /* arrow buttons */
 document.querySelectorAll('[data-rail]').forEach(b=>{
   b.addEventListener('click',()=>{
-    const step=rail.querySelector('.panel').offsetWidth+22;
+    const step = rail.querySelector('.panel').offsetWidth+22;
     rail.scrollBy({left:b.dataset.rail==='next'?step:-step,behavior:'smooth'});
   });
 });
+
+/* ================= infinite loop ================= */
+(function(){
+  const originals = panels.slice();
+  if(!originals.length) return;
+  const gap = 22, COPIES = 2;
+
+  for(let c=1;c<=COPIES;c++){
+    originals.forEach(p=>{
+      const cl = p.cloneNode(true);
+      cl.querySelectorAll('[data-count]').forEach(n=>{ delete n.dataset.done; });
+      cl.querySelectorAll('[id]').forEach(el=>{
+        const oldId = el.id, newId = oldId+'-loop'+c;
+        el.id = newId;
+        cl.querySelectorAll('mpath').forEach(m=>{
+          if(m.getAttribute('href')==='#'+oldId) m.setAttribute('href','#'+newId);
+        });
+      });
+      cl.classList.remove('lock');
+      rail.appendChild(cl);
+      panels.push(cl);
+    });
+  }
+
+  let SET = 0;
+  function recalc(){
+    SET = 0;
+    originals.forEach(p=>{ SET += p.getBoundingClientRect().width + gap; });
+  }
+  recalc();
+  requestAnimationFrame(()=>{ rail.scrollLeft = SET; });
+  addEventListener('resize',()=>{ recalc(); rail.scrollLeft = SET; });
+
+  let fixing = false;
+  rail.addEventListener('scroll',()=>{
+    if(fixing || !SET) return;
+    const x = rail.scrollLeft;
+    if(x < SET*0.5 || x > SET*1.5){
+      fixing = true;
+      const snap = rail.style.scrollSnapType;
+      rail.style.scrollSnapType = 'none';
+      rail.scrollLeft = x < SET*0.5 ? x + SET : x - SET;
+      rail.style.scrollSnapType = snap || '';
+      requestAnimationFrame(()=>{ fixing = false; });
+    }
+  },{passive:true});
+})();
+  
 addEventListener('scroll',checkLock,{passive:true});
 setTimeout(checkLock,600);
 
