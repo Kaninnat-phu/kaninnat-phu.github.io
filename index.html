@@ -125,6 +125,10 @@ h2{font-weight:500;font-size:clamp(30px,4vw,52px);letter-spacing:-.01em;margin-b
 
 .thumb{display:block;position:relative;aspect-ratio:16/9;border-bottom:1px solid var(--faint);overflow:hidden;background:#050505}
 .thumb svg{width:100%;height:100%;display:block}
+.thumb .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:opacity .5s ease}
+.panel:hover .thumb .shot{opacity:0}
+.thumb .go{z-index:3}
+.thumb::after{z-index:2}
 .thumb .go{position:absolute;top:12px;right:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--ink);background:var(--paper);padding:5px 9px;opacity:0;transform:translateY(-6px);transition:.3s}
 .panel:hover .thumb .go,.panel.lock .thumb .go{opacity:1;transform:none}
 .cbody{padding:26px 26px 24px}
@@ -281,6 +285,7 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
         <span class="tb tl"></span><span class="tb tr"></span><span class="tb bl"></span><span class="tb br"></span>
         <span class="lockline">TARGET LOCKED</span>
         <a class="thumb" href="https://kaninnat-phu.github.io/Cloud-Security-AI-Detector/" target="_blank" rel="noopener" aria-label="Open Cloud Security AI Detector live demo">
+          <img class="shot" src="shot-001.png" alt="Cloud Security AI Detector SOC dashboard">
           <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
             <rect width="320" height="180" fill="#050505"/>
             <rect x="14" y="14" width="292" height="18" fill="none" stroke="#2E2E2C"/>
@@ -325,6 +330,7 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
         <span class="tb tl"></span><span class="tb tr"></span><span class="tb bl"></span><span class="tb br"></span>
         <span class="lockline">TARGET LOCKED</span>
         <a class="thumb" href="https://www.youtube.com/watch?v=F4RQKNvOCaE" target="_blank" rel="noopener" aria-label="Open Smart Server Room Monitoring video demo">
+          <img class="shot" src="shot-002.png" alt="RSSI intrusion monitor terminal output">
           <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
             <rect width="320" height="180" fill="#050505"/>
             <text x="14" y="26" fill="#8C8C88" font-family="monospace" font-size="9">RSSI MONITOR — ESP32-C6</text>
@@ -361,6 +367,7 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
         <span class="tb tl"></span><span class="tb tr"></span><span class="tb bl"></span><span class="tb br"></span>
         <span class="lockline">TARGET LOCKED</span>
         <a class="thumb" href="https://kaninnat-phu.github.io/Smart-Server-Room-Monitoring---Network-Infrastructure/" target="_blank" rel="noopener" aria-label="Open Dual-Link OSPF Failover Lab live demo">
+          <img class="shot" src="shot-003.png" alt="OSPF dual-link failover in Packet Tracer">
           <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
             <rect width="320" height="180" fill="#050505"/>
             <text x="14" y="26" fill="#8C8C88" font-family="monospace" font-size="9">OSPF AREA 0 — DUAL CORE LINK</text>
