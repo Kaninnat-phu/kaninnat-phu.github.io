@@ -712,11 +712,11 @@ document.querySelectorAll('[data-rail]').forEach(b=>{
   rail.addEventListener('scroll',()=>{
     if(fixing || !SET) return;
     const x = rail.scrollLeft;
-  if(x < SET*0.25 || x > SET*1.75){
+  if(x < SET*0.25 || x > SET*2.2){
       fixing = true;
       const snap = rail.style.scrollSnapType;
       rail.style.scrollSnapType = 'none';
-     rail.scrollLeft = x < SET*0.25 ? x + SET : x - SET;
+     rail.scrollLeft = x < SET*0.15 ? x + SET : x - SET;
       rail.style.scrollSnapType = snap || '';
       requestAnimationFrame(()=>{ fixing = false; });
     }
