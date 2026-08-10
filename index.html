@@ -147,7 +147,13 @@ h2{font-weight:500;font-size:clamp(30px,4vw,52px);letter-spacing:-.01em;margin-b
 .panel.slot span{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;text-align:center;line-height:2.2}
 .railhint{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;display:flex;gap:10px;align-items:center;margin-top:6px}
 .railhint::after{content:"→";animation:nudge 1.6s ease-in-out infinite}
-.railnav{display:flex;align-items:center;gap:10px;margin-top:6px}
+.railnav{display:flex;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
+.pdots{display:flex;gap:6px;margin-left:4px}
+.pdot{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;min-width:36px;height:38px;background:rgba(0,0,0,.4);border:1px solid var(--line);color:var(--dim);cursor:pointer;transition:.25s}
+.pdot:hover{color:var(--paper);border-color:var(--paper)}
+.pdot.on{background:var(--paper);color:var(--ink);border-color:var(--paper);font-weight:500}
+.pid{font-size:13px !important;color:var(--paper) !important}
+.pid > span:first-child{font-size:15px;font-weight:500;letter-spacing:.14em}
 .rbtn{width:38px;height:38px;background:rgba(0,0,0,.4);border:1px solid var(--line);color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:15px;cursor:pointer;transition:.25s}
 .rbtn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 .railnav .railhint{margin-top:0}
@@ -594,6 +600,47 @@ rail.addEventListener('click', e=>{
   if(dragMoved > 6){ e.preventDefault(); e.stopPropagation(); }
 }, true);
 rail.style.cursor='grab';
+
+/* ===== project counter 01 · 02 · 03 ===== */
+const dotsWrap = document.createElement('div');
+dotsWrap.className = 'pdots';
+const nav = document.querySelector('.railnav');
+const hint = document.querySelector('.railhint');
+if(nav) nav.insertBefore(dotsWrap, hint);
+
+let ORIG = 0;
+function buildDots(){
+  ORIG = Math.max(1, Math.round(panels.length/3));
+  dotsWrap.innerHTML = '';
+  for(let i=0;i<ORIG;i++){
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'pdot';
+    b.textContent = '0'+(i+1);
+    b.setAttribute('aria-label','Go to project '+(i+1));
+    b.addEventListener('click', ()=>{
+      const target = panels[ORIG + i] || panels[i];
+      if(target) target.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+    });
+    dotsWrap.appendChild(b);
+  }
+}
+function syncDots(){
+  if(!ORIG) return;
+  const mid = innerWidth/2;
+  let best = -1, bestD = Infinity;
+  panels.forEach((p,idx)=>{
+    const r = p.getBoundingClientRect();
+    const d = Math.abs(r.left + r.width/2 - mid);
+    if(d < bestD){ bestD = d; best = idx; }
+  });
+  if(best < 0) return;
+  const cur = best % ORIG;
+  [...dotsWrap.children].forEach((d,i)=> d.classList.toggle('on', i === cur));
+}
+rail.addEventListener('scroll', syncDots, {passive:true});
+addEventListener('scroll', syncDots, {passive:true});
+setTimeout(()=>{ buildDots(); syncDots(); }, 900);
 /* arrow buttons */
 document.querySelectorAll('[data-rail]').forEach(b=>{
   b.addEventListener('click',()=>{
