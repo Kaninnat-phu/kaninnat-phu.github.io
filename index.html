@@ -125,7 +125,7 @@ h2{font-weight:500;font-size:clamp(30px,4vw,52px);letter-spacing:-.01em;margin-b
 
 .thumb{display:block;position:relative;aspect-ratio:16/9;border-bottom:1px solid var(--faint);overflow:hidden;background:#050505}
 .thumb svg{width:100%;height:100%;display:block}
-.thumb .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:opacity .5s ease}
+.thumb .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#050505;z-index:1;transition:opacity .5s ease}
 .panel:hover .thumb .shot{opacity:0}
 .thumb .go{z-index:3}
 .thumb::after{z-index:2}
@@ -152,8 +152,9 @@ h2{font-weight:500;font-size:clamp(30px,4vw,52px);letter-spacing:-.01em;margin-b
 .pdot{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;min-width:36px;height:38px;background:rgba(0,0,0,.4);border:1px solid var(--line);color:var(--dim);cursor:pointer;transition:.25s}
 .pdot:hover{color:var(--paper);border-color:var(--paper)}
 .pdot.on{background:var(--paper);color:var(--ink);border-color:var(--paper);font-weight:500}
-.pid{font-size:13px !important;color:var(--paper) !important}
-.pid > span:first-child{font-size:15px;font-weight:500;letter-spacing:.14em}
+.pid{font-size:12px !important;color:var(--paper) !important;gap:12px;flex-wrap:wrap}
+.pid > span:first-child{font-size:14px;font-weight:500;letter-spacing:.1em;white-space:nowrap}
+.pid .live{white-space:nowrap}
 .rbtn{width:38px;height:38px;background:rgba(0,0,0,.4);border:1px solid var(--line);color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:15px;cursor:pointer;transition:.25s}
 .rbtn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 .railnav .railhint{margin-top:0}
@@ -642,13 +643,25 @@ rail.addEventListener('scroll', syncDots, {passive:true});
 addEventListener('scroll', syncDots, {passive:true});
 setTimeout(()=>{ buildDots(); syncDots(); }, 900);
 /* arrow buttons */
+function nearestIdx(){
+  const mid = innerWidth/2;
+  let best = -1, bd = Infinity;
+  panels.forEach((p,i)=>{
+    const r = p.getBoundingClientRect();
+    const d = Math.abs(r.left + r.width/2 - mid);
+    if(d < bd){ bd = d; best = i; }
+  });
+  return best;
+}
 document.querySelectorAll('[data-rail]').forEach(b=>{
-  b.addEventListener('click',()=>{
-    const step = rail.querySelector('.panel').offsetWidth+22;
-    rail.scrollBy({left:b.dataset.rail==='next'?step:-step,behavior:'smooth'});
+  b.addEventListener('click', ()=>{
+    const i = nearestIdx();
+    if(i < 0) return;
+    const n = b.dataset.rail === 'next' ? i+1 : i-1;
+    const t = panels[(n + panels.length) % panels.length];
+    if(t) t.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
   });
 });
-
 /* ================= infinite loop ================= */
 (function(){
   const originals = panels.slice();
@@ -685,11 +698,11 @@ document.querySelectorAll('[data-rail]').forEach(b=>{
   rail.addEventListener('scroll',()=>{
     if(fixing || !SET) return;
     const x = rail.scrollLeft;
-    if(x < SET*0.5 || x > SET*1.5){
+  if(x < SET*0.25 || x > SET*1.75){
       fixing = true;
       const snap = rail.style.scrollSnapType;
       rail.style.scrollSnapType = 'none';
-      rail.scrollLeft = x < SET*0.5 ? x + SET : x - SET;
+     rail.scrollLeft = x < SET*0.25 ? x + SET : x - SET;
       rail.style.scrollSnapType = snap || '';
       requestAnimationFrame(()=>{ fixing = false; });
     }
