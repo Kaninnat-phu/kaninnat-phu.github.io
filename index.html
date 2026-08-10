@@ -655,10 +655,16 @@ function nearestIdx(){
 }
 document.querySelectorAll('[data-rail]').forEach(b=>{
   b.addEventListener('click', ()=>{
-    const i = nearestIdx();
-    if(i < 0) return;
-    const n = b.dataset.rail === 'next' ? i+1 : i-1;
-    const t = panels[(n + panels.length) % panels.length];
+    const dir = b.dataset.rail === 'next' ? 1 : -1;
+    let i = nearestIdx();
+    if(i < 0 || !ORIG) return;
+    const slot = ((i % ORIG) + ORIG) % ORIG;
+    const mid = ORIG + slot;
+    if(i !== mid && panels[mid]){
+      panels[mid].scrollIntoView({behavior:'auto', block:'nearest', inline:'center'});
+      i = mid;
+    }
+    const t = panels[i + dir];
     if(t) t.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
   });
 });
