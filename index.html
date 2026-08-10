@@ -573,15 +573,27 @@ function checkLock(){
 }
 rail.addEventListener('scroll',checkLock,{passive:true});
 
-/* mouse wheel → horizontal (Windows / non-trackpad) */
-rail.addEventListener('wheel',e=>{
-  if(Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;
-  const atStart=rail.scrollLeft<=0, atEnd=rail.scrollLeft>=rail.scrollWidth-rail.clientWidth-1;
-  if((e.deltaY<0&&atStart)||(e.deltaY>0&&atEnd))return;
-  e.preventDefault();
-  rail.scrollBy({left:e.deltaY*1.1,behavior:'auto'});
-},{passive:false});
-
+/* drag to scroll — replaces wheel hijack so the page always scrolls freely */
+let dragging=false, dragX=0, dragL=0, dragMoved=0;
+rail.addEventListener('mousedown', e=>{
+  dragging=true; dragMoved=0;
+  dragX=e.pageX; dragL=rail.scrollLeft;
+  rail.style.cursor='grabbing';
+});
+addEventListener('mouseup', ()=>{
+  dragging=false; rail.style.cursor='';
+  setTimeout(()=>{ dragMoved=0; }, 0);
+});
+addEventListener('mousemove', e=>{
+  if(!dragging) return;
+  const d = e.pageX - dragX;
+  dragMoved = Math.abs(d);
+  if(dragMoved > 3){ e.preventDefault(); rail.scrollLeft = dragL - d; }
+});
+rail.addEventListener('click', e=>{
+  if(dragMoved > 6){ e.preventDefault(); e.stopPropagation(); }
+}, true);
+rail.style.cursor='grab';
 /* arrow buttons */
 document.querySelectorAll('[data-rail]').forEach(b=>{
   b.addEventListener('click',()=>{
