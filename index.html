@@ -697,8 +697,16 @@ document.querySelectorAll('[data-rail]').forEach(b=>{
     originals.forEach(p=>{ SET += p.getBoundingClientRect().width + gap; });
   }
   recalc();
-  requestAnimationFrame(()=>{ rail.scrollLeft = SET; });
-  addEventListener('resize',()=>{ recalc(); rail.scrollLeft = SET; });
+  function centerFirst(){
+    const first = panels[originals.length];
+    if(!first){ rail.scrollLeft = SET; return; }
+    const fr = first.getBoundingClientRect();
+    const rr = rail.getBoundingClientRect();
+    rail.scrollLeft += (fr.left - rr.left) - (rail.clientWidth - fr.width)/2;
+  }
+  requestAnimationFrame(centerFirst);
+  setTimeout(centerFirst, 400);
+  addEventListener('resize',()=>{ recalc(); centerFirst(); });
 
   let fixing = false;
   rail.addEventListener('scroll',()=>{
