@@ -470,7 +470,65 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
           </div>
         </div>
       </article>
+<!-- PRJ-005 -->
+      <article class="panel">
+        <span class="tb tl"></span><span class="tb tr"></span><span class="tb bl"></span><span class="tb br"></span>
+        <span class="lockline">TARGET LOCKED</span>
+        <a class="thumb" href="https://github.com/Kaninnat-phu/linux-cis-hardening" target="_blank" rel="noopener" aria-label="Open Linux CIS Hardening repository">
+          <img class="shot" src="shot-005.png" alt="CIS benchmark audit output showing all checks passed">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#050505"/>
+            <text x="14" y="24" fill="#8C8C88" font-family="monospace" font-size="9">CIS BENCHMARK AUDIT — LINUX</text>
+            <line x1="14" y1="32" x2="306" y2="32" stroke="#2E2E2C"/>
 
+            <g font-family="monospace" font-size="9">
+              <text x="14" y="54" fill="#8C8C88">ROOT LOGIN</text>
+              <text x="150" y="54" fill="#F2F2F0">DISABLED</text>
+              <text x="272" y="54" fill="#F2F2F0">[OK]
+                <animate attributeName="opacity" values="0;0;1;1" dur="4s" begin="0s" repeatCount="indefinite"/>
+              </text>
+
+              <text x="14" y="74" fill="#8C8C88">KEY AUTH ONLY</text>
+              <text x="150" y="74" fill="#F2F2F0">ENFORCED</text>
+              <text x="272" y="74" fill="#F2F2F0">[OK]
+                <animate attributeName="opacity" values="0;0;1;1" dur="4s" begin="0.4s" repeatCount="indefinite"/>
+              </text>
+
+              <text x="14" y="94" fill="#8C8C88">FIREWALL ZONE</text>
+              <text x="150" y="94" fill="#F2F2F0">ACTIVE</text>
+              <text x="272" y="94" fill="#F2F2F0">[OK]
+                <animate attributeName="opacity" values="0;0;1;1" dur="4s" begin="0.8s" repeatCount="indefinite"/>
+              </text>
+            </g>
+
+            <rect x="14" y="112" width="292" height="10" fill="none" stroke="#2E2E2C"/>
+            <rect x="15" y="113" width="290" height="8" fill="#F2F2F0">
+              <animate attributeName="width" values="0;290;290" dur="4s" repeatCount="indefinite"/>
+            </rect>
+
+            <text x="14" y="146" fill="#F2F2F0" font-family="monospace" font-size="15">5/5</text>
+            <text x="52" y="146" fill="#8C8C88" font-family="monospace" font-size="9">CHECKS PASSED</text>
+            <text x="14" y="168" fill="#8C8C88" font-family="monospace" font-size="8">BASH · AUDIT + REMEDIATE · IDEMPOTENT</text>
+
+            <circle cx="286" cy="141" r="14" fill="none" stroke="#F2F2F0" class="pulse"/>
+            <path d="M279 141 L284 146 L294 136" fill="none" stroke="#F2F2F0" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="go">VIEW CODE ↗</span>
+        </a>
+        <div class="cbody">
+          <div class="pid"><span>PRJ-005 · LINUX</span><span class="live">LIVE</span></div>
+          <h3>Linux CIS Hardening</h3>
+          <p>Bash tooling that audits a Linux server against CIS Benchmark controls and reports pass/fail per check — disabling direct root login, enforcing key-based SSH, and bringing the host firewall under an explicit zone.</p>
+          <div class="stats">
+            <div class="stat"><div class="num" data-count="5" data-suffix="/5">0/5</div><div class="lab">checks passed</div></div>
+            <div class="stat"><div class="num" data-count="0">0</div><div class="lab">root logins</div></div>
+            <div class="stat"><div class="num" data-count="1">0</div><div class="lab">firewall zone</div></div>
+          </div>
+          <div class="plinks">
+            <a href="https://github.com/Kaninnat-phu/linux-cis-hardening" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
     </div>
    <div class="railnav">
       <button class="rbtn" data-rail="prev" aria-label="Previous project">←</button>
