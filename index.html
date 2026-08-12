@@ -529,6 +529,67 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
           </div>
         </div>
       </article>
+      <!-- PRJ-006 -->
+      <article class="panel">
+        <span class="tb tl"></span><span class="tb tr"></span><span class="tb bl"></span><span class="tb br"></span>
+        <span class="lockline">TARGET LOCKED</span>
+        <a class="thumb" href="https://github.com/Kaninnat-phu/checkov-terraform-scan" target="_blank" rel="noopener" aria-label="Open Checkov Terraform Scan repository">
+          <img class="shot" src="shot-006.png" alt="Checkov scan results showing passed and failed policy checks">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#050505"/>
+            <text x="14" y="24" fill="#8C8C88" font-family="monospace" font-size="9">CHECKOV 3.3.10 — TERRAFORM SCAN</text>
+            <line x1="14" y1="32" x2="306" y2="32" stroke="#2E2E2C"/>
+
+            <text x="14" y="52" fill="#8C8C88" font-family="monospace" font-size="8">BEFORE</text>
+            <rect x="14" y="58" width="128" height="12" fill="none" stroke="#2E2E2C"/>
+            <rect x="15" y="59" width="86" height="10" fill="#5A5A56"/>
+            <text x="14" y="84" fill="#8C8C88" font-family="monospace" font-size="9">19 PASS · 9 FAIL</text>
+
+            <text x="184" y="52" fill="#F2F2F0" font-family="monospace" font-size="8">AFTER</text>
+            <rect x="184" y="58" width="122" height="12" fill="none" stroke="#F2F2F0"/>
+            <rect x="185" y="59" width="18" height="10" fill="#F2F2F0">
+              <animate attributeName="width" values="18;104;104" dur="3.4s" repeatCount="indefinite"/>
+            </rect>
+            <text x="184" y="84" fill="#F2F2F0" font-family="monospace" font-size="9">24 PASS · 4 FAIL</text>
+
+            <path d="M150 64 L176 64" stroke="#F2F2F0" stroke-width="1.4"/>
+            <path d="M170 59 L176 64 L170 69" fill="none" stroke="#F2F2F0" stroke-width="1.4"/>
+
+            <line x1="14" y1="98" x2="306" y2="98" stroke="#2E2E2C"/>
+
+            <g font-family="monospace" font-size="8">
+              <text x="14" y="114" fill="#F2F2F0">CKV_AWS_79</text>
+              <text x="104" y="114" fill="#8C8C88">IMDSv2 ENFORCED</text>
+              <text x="272" y="114" fill="#F2F2F0">FIXED</text>
+
+              <text x="14" y="130" fill="#F2F2F0">CKV_AWS_8</text>
+              <text x="104" y="130" fill="#8C8C88">EBS ENCRYPTED</text>
+              <text x="272" y="130" fill="#F2F2F0">FIXED</text>
+
+              <text x="14" y="146" fill="#F2F2F0">CKV_AWS_382</text>
+              <text x="104" y="146" fill="#8C8C88">EGRESS 80/443</text>
+              <text x="272" y="146" fill="#F2F2F0">FIXED</text>
+            </g>
+
+            <text x="14" y="170" fill="#8C8C88" font-family="monospace" font-size="8">5 FIXED · 4 DOCUMENTED AS ACCEPTED</text>
+            <circle cx="292" cy="164" r="3" fill="#F2F2F0" class="pulse"/>
+          </svg>
+          <span class="go">VIEW CODE ↗</span>
+        </a>
+        <div class="cbody">
+          <div class="pid"><span>PRJ-006 · DEVSECOPS</span><span class="live">LIVE</span></div>
+          <h3>Checkov Terraform Scan</h3>
+          <p>Static security analysis of the PRJ-004 Terraform code — enforced IMDSv2, encrypted the EBS root volume, scoped egress to 80/443, locked the default security group, and disabled public-IP auto-assign. The four remaining findings are documented with the reasoning for accepting each.</p>
+          <div class="stats">
+            <div class="stat"><div class="num" data-count="5">0</div><div class="lab">findings fixed</div></div>
+            <div class="stat"><div class="num" data-count="24" data-suffix="/28">0/28</div><div class="lab">checks passing</div></div>
+            <div class="stat"><div class="num" data-count="4">0</div><div class="lab">accepted risks</div></div>
+          </div>
+          <div class="plinks">
+            <a href="https://github.com/Kaninnat-phu/checkov-terraform-scan" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
     </div>
    <div class="railnav">
       <button class="rbtn" data-rail="prev" aria-label="Previous project">←</button>
