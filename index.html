@@ -590,6 +590,64 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
           </div>
         </div>
       </article>
+      <!-- PRJ-007 -->
+      <article class="panel">
+        <span class="tb tl"></span><span class="tb tr"></span><span class="tb bl"></span><span class="tb br"></span>
+        <span class="lockline">TARGET LOCKED</span>
+        <a class="thumb" href="https://github.com/Kaninnat-phu/cicd-security-pipeline" target="_blank" rel="noopener" aria-label="Open CI/CD Security Pipeline repository">
+          <img class="shot" src="shot-007.png" alt="GitHub Actions workflow running Terraform validation and Checkov scan">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#050505"/>
+            <text x="14" y="24" fill="#8C8C88" font-family="monospace" font-size="9">GITHUB ACTIONS — ON PUSH / PR</text>
+            <line x1="14" y1="32" x2="306" y2="32" stroke="#2E2E2C"/>
+
+            <circle cx="30" cy="76" r="11" fill="none" stroke="#F2F2F0"/>
+            <text x="22" y="80" fill="#F2F2F0" font-family="monospace" font-size="10">↑</text>
+            <text x="16" y="104" fill="#8C8C88" font-family="monospace" font-size="7">PUSH</text>
+
+            <path id="cip" d="M45 76 L272 76" fill="none" stroke="#2E2E2C" stroke-width="1.4"/>
+            <circle r="3" fill="#F2F2F0">
+              <animateMotion dur="3.6s" repeatCount="indefinite"><mpath href="#cip"/></animateMotion>
+            </circle>
+
+            <rect x="58" y="60" width="62" height="32" fill="none" stroke="#F2F2F0"/>
+            <text x="66" y="80" fill="#F2F2F0" font-family="monospace" font-size="8">fmt -check</text>
+            <text x="72" y="104" fill="#8C8C88" font-family="monospace" font-size="7">STEP 1</text>
+
+            <rect x="130" y="60" width="62" height="32" fill="none" stroke="#F2F2F0"/>
+            <text x="138" y="80" fill="#F2F2F0" font-family="monospace" font-size="8">validate</text>
+            <text x="144" y="104" fill="#8C8C88" font-family="monospace" font-size="7">STEP 2</text>
+
+            <rect x="202" y="60" width="62" height="32" fill="none" stroke="#F2F2F0"/>
+            <text x="212" y="80" fill="#F2F2F0" font-family="monospace" font-size="8">checkov</text>
+            <text x="216" y="104" fill="#8C8C88" font-family="monospace" font-size="7">STEP 3</text>
+
+            <text x="126" y="50" fill="#8C8C88" font-family="monospace" font-size="7">needs:</text>
+            <text x="198" y="50" fill="#8C8C88" font-family="monospace" font-size="7">needs:</text>
+
+            <circle cx="288" cy="76" r="13" fill="none" stroke="#F2F2F0" class="pulse"/>
+            <path d="M281 76 L286 81 L296 71" fill="none" stroke="#F2F2F0" stroke-width="2" stroke-linecap="round"/>
+
+            <line x1="14" y1="126" x2="306" y2="126" stroke="#2E2E2C"/>
+            <text x="14" y="146" fill="#F2F2F0" font-family="monospace" font-size="9">GATE: FAIL FAST ON MISFORMAT · INVALID · FINDING</text>
+            <text x="14" y="166" fill="#8C8C88" font-family="monospace" font-size="8">TERRAFORM 1.15 · CHECKOV · AUTOMATED EVERY COMMIT</text>
+          </svg>
+          <span class="go">VIEW CODE ↗</span>
+        </a>
+        <div class="cbody">
+          <div class="pid"><span>PRJ-007 · CI/CD</span><span class="live">LIVE</span></div>
+          <h3>CI/CD Security Pipeline</h3>
+          <p>GitHub Actions workflow that runs <code>terraform fmt -check</code> and <code>validate</code> on every push and pull request, then gates a Checkov scan behind validation passing. A broken config fails fast instead of burning a full security scan — closing the loop from PRJ-004 and PRJ-006 into enforcement.</p>
+          <div class="stats">
+            <div class="stat"><div class="num" data-count="3">0</div><div class="lab">pipeline stages</div></div>
+            <div class="stat"><div class="num" data-count="100" data-suffix="%">0%</div><div class="lab">commits scanned</div></div>
+            <div class="stat"><div class="num" data-count="0">0</div><div class="lab">manual steps</div></div>
+          </div>
+          <div class="plinks">
+            <a href="https://github.com/Kaninnat-phu/cicd-security-pipeline" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
     </div>
    <div class="railnav">
       <button class="rbtn" data-rail="prev" aria-label="Previous project">←</button>
