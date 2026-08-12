@@ -35,11 +35,11 @@ body{background:var(--ink);color:var(--paper);font-family:'Space Grotesk',sans-s
 #moon.hide{opacity:0}
 /* landing moon (finale) */
 #landmoon{position:fixed;left:50%;bottom:0;width:220vw;aspect-ratio:1;border-radius:50%;z-index:0;pointer-events:none;
-  background-image:url('moon.png');
-  background-size:cover;
+ background-image:url('moon-large.png');
+  background-size:100% 100%;
   background-position:center top;
   transform:translate(-50%,100%);
-  box-shadow:0 -30px 120px rgba(242,242,240,.28);
+  filter:drop-shadow(0 -20px 60px rgba(242,242,240,.20));
   opacity:0;
 }
 #landmoon .crater{position:absolute;border-radius:50%;background:rgba(0,0,0,.16)}
