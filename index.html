@@ -27,7 +27,7 @@ body{background:var(--ink);color:var(--paper);font-family:'Space Grotesk',sans-s
 #spine .fill{position:sticky;top:0;display:block;width:1px;background:linear-gradient(180deg,transparent,rgba(242,242,240,.5) 12%,rgba(242,242,240,.5) 88%,transparent);height:0}
 
 /* small moon (journey) */
-#moon{position:fixed;top:8vh;right:9vw;width:min(96px,13vw);z-index:0;pointer-events:none;filter:drop-shadow(0 0 30px rgba(242,242,240,.22));transition:opacity .6s}
+#moon{position:fixed;top:8vh;right:9vw;width:min(96px,13vw);z-index:0;pointer-events:none;filter:drop-shadow(0 0 22px rgba(242,242,240,.16));transition:opacity .6s}
 #moon.hide{opacity:0}
 
 /* landing moon (finale) */
@@ -214,19 +214,8 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
 <div id="prog"></div>
 <canvas id="sky"></canvas>
 
-<svg id="moon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <defs>
-    <radialGradient id="mg" cx="38%" cy="34%" r="75%">
-      <stop offset="0%" stop-color="#F2F2F0"/><stop offset="72%" stop-color="#B9B9B5"/><stop offset="100%" stop-color="#6E6E6A"/>
-    </radialGradient>
-  </defs>
-  <circle cx="60" cy="60" r="46" fill="url(#mg)"/>
-  <circle cx="60" cy="60" r="46" fill="#000" opacity=".38" transform="translate(20 -8)"/>
-  <circle cx="44" cy="50" r="7" fill="#000" opacity=".14"/>
-  <circle cx="66" cy="74" r="5" fill="#000" opacity=".12"/>
-  <circle cx="52" cy="72" r="3.4" fill="#000" opacity=".16"/>
-  <circle cx="38" cy="66" r="2.4" fill="#000" opacity=".12"/>
-</svg>
+<img id="moon" src="moon.png" alt="" aria-hidden="true">
+  
 <div id="landmoon" aria-hidden="true">
   <div class="crater" style="width:9%;height:9%;left:22%;top:10%"></div>
   <div class="crater" style="width:5%;height:5%;left:58%;top:6%"></div>
