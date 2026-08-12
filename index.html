@@ -34,14 +34,12 @@ body{background:var(--ink);color:var(--paper);font-family:'Space Grotesk',sans-s
         drop-shadow(0 0 130px rgba(242,242,240,.05));transition:opacity .6s}
 #moon.hide{opacity:0}
 /* landing moon (finale) */
-#landmoon{position:fixed;left:50%;bottom:0;width:220vw;aspect-ratio:1;border-radius:50%;z-index:0;pointer-events:none;
- background-image:url('moon-large.png');
-  background-size:100% 100%;
-  background-position:center top;
-  transform:translate(-50%,100%);
-  filter:drop-shadow(0 -20px 60px rgba(242,242,240,.20));
-  opacity:0;
-}
+#horizon{position:fixed;left:50%;bottom:0;width:300vw;aspect-ratio:2/1;transform:translate(-50%,62%);z-index:0;pointer-events:none;border-radius:50% 50% 0 0;background:#000;box-shadow:0 0 0 1px rgba(242,242,240,.30),0 -2px 26px rgba(242,242,240,.16),0 -14px 80px rgba(242,242,240,.10);opacity:0;transition:opacity 1.1s ease,transform 1.3s cubic-bezier(.16,1,.3,1)}
+#horizon.on{opacity:1;transform:translate(-50%,52%)}
+.pulse-ring{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px;border:1px solid rgba(242,242,240,.5);border-radius:50%;opacity:0;pointer-events:none;animation:ripple 4s ease-out infinite}
+.pulse-ring:nth-child(2){animation-delay:1.33s}
+.pulse-ring:nth-child(3){animation-delay:2.66s}
+@keyframes ripple{0%{transform:scale(.4);opacity:.55}70%{opacity:.12}100%{transform:scale(4.2);opacity:0}}
 #landmoon .crater{position:absolute;border-radius:50%;background:rgba(0,0,0,.16)}
 
 .wrap{position:relative;z-index:1}
@@ -221,7 +219,7 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
 
 <img id="moon" src="moon.png" alt="" aria-hidden="true">
   
-<div id="landmoon" aria-hidden="true"></div>
+<div id="horizon" aria-hidden="true"></div>
 
 <div class="wrap">
 
@@ -663,6 +661,7 @@ footer{position:relative;z-index:1;padding:26px 6vw;border-top:1px solid var(--f
   <div class="inner">
     <div class="sec-label" style="justify-content:center">03 / Contact</div>
     <h2 class="reveal" style="margin-bottom:30px">Open channel.</h2>
+    <span class="pulse-ring"></span><span class="pulse-ring"></span><span class="pulse-ring"></span>
     <a class="bigmail reveal d1" href="mailto:kaninnat.phu@gmail.com">kaninnat.phu@gmail.com</a>
     <div class="socialrow reveal d2">
       <a class="btn" href="https://github.com/Kaninnat-phu" target="_blank" rel="noopener">GitHub ↗</a>
@@ -748,7 +747,7 @@ else{nebula();for(const s of stars){cx.globalAlpha=.5;cx.fillStyle='#F2F2F0';cx.
 
 /* ============ scroll: progress + moon landing ============ */
 const prog=document.getElementById('prog');
-const landmoon=document.getElementById('landmoon');
+const landmoon=document.getElementById('horizon');
 const smallmoon=document.getElementById('moon');
 const landtag=document.getElementById('landtag');
 const contact=document.getElementById('contact');
