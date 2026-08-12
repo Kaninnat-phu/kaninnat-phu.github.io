@@ -27,9 +27,12 @@ body{background:var(--ink);color:var(--paper);font-family:'Space Grotesk',sans-s
 #spine .fill{position:sticky;top:0;display:block;width:1px;background:linear-gradient(180deg,transparent,rgba(242,242,240,.5) 12%,rgba(242,242,240,.5) 88%,transparent);height:0}
 
 /* small moon (journey) */
-#moon{position:fixed;top:8vh;right:9vw;width:min(96px,13vw);z-index:0;pointer-events:none;filter:drop-shadow(0 0 22px rgba(242,242,240,.16));transition:opacity .6s}
+#moon{position:fixed;top:8vh;right:9vw;width:min(96px,13vw);z-index:0;pointer-events:none;filter:
+        drop-shadow(0 0 10px rgba(242,242,240,.30))
+        drop-shadow(0 0 30px rgba(242,242,240,.18))
+        drop-shadow(0 0 70px rgba(242,242,240,.10))
+        drop-shadow(0 0 130px rgba(242,242,240,.05));transition:opacity .6s}
 #moon.hide{opacity:0}
-
 /* landing moon (finale) */
 #landmoon{position:fixed;left:50%;bottom:0;width:220vw;aspect-ratio:1;border-radius:50%;z-index:0;pointer-events:none;
   background:radial-gradient(circle at 50% 18%, #D8D8D4 0%, #9A9A96 26%, #4A4A46 60%, #1A1A18 100%);
